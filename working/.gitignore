@@ -1,0 +1,7 @@
+# ignore gnerated files other than pdf
+
+*.aux
+*.log
+*.gz
+*.toc
+
