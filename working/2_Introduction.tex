@@ -1,10 +1,9 @@
 \section{Introduction}
 
+Computer technology changes at a rapid rate. In order to keep up with the change, engineers must constantly be learning. However, developer time is a high-demand commodity, and so learning should be made efficient. Through Stack Overflow question posts and job board posts, patterns can be deduced to predict which skills will be most needed in the future. With this information, computer and software engineers can stay ahead of the curve with what they spend their time learning. 
 
-\subsection{objective}
-\subsection{what is the problem}
-\subsection{why this is a project related the this class}
-\subsection{why other approach is no good}
-\subsection{why you think your approach is better}
-\subsection{statement of the problem}
-\subsection{area or scope of investigation}
+The objective of this paper is to predict the number of future job openings in a field by analyzing the current support for questions in that field on stack overflow. This information is critical to help developers know the skills that they will need for the future job market. The findings of our research should be useful to young developers who hope to find a job. With our findings and methodology, they can know which fields of computing they should become proficient in to land a job and prepare for the future. 
+In this project, we are analyzing a large dataset from Stack Overflow Q\&A entries with data mining techniques to uncover common themes across a massive number of text documents.
+
+After research and discussion, we decide to use LDA (Latent Dirichlet Allocation) as the main categorization method to find the most popular topics because comparing to TF\-IDF (Term Frequency\-Inverse Document Frequency), which only finds individual terms among the posts, LDA is more versatile to identify topics by finding groups of words that frequently appear together. This approach allows us to categorize posts by topics where multiple topic-related words appear in the text together. This is much better for categorizing post topics than looking for the presence of individual terms is.
+The scope of our investigation is around topics that software developers encounter. Such topics are discussed primarily on stackoverflow.com, which is the data source we will use. We hope to categorize common topics by their level of answer support and relate this to the current job market.

@@ -1,4 +1,9 @@
 
+%% for title page
+
+
+
+
 %% bare_jrnl.tex
 %% V1.3
 %% 2007/01/11
@@ -64,6 +69,17 @@
 % draft mode.
 %
 \documentclass[journal]{IEEEtran}
+
+\usepackage{amsmath}
+
+
+% for title page
+\usepackage[utf8]{inputenc} % Required for inputting international characters
+\usepackage[T1]{fontenc} % Output font encoding for international characters
+\usepackage{mathpazo} % Palatino font
+
+
+
 \usepackage{blindtext}
 \usepackage{graphicx}
 
@@ -101,6 +117,9 @@
 % *** CITATION PACKAGES ***
 %
 %\usepackage{cite}
+\usepackage{url}
+
+
 % cite.sty was written by Donald Arseneau
 % V1.6 and later of IEEEtran pre-defines the format of the cite.sty package
 % \cite{} output to follow that of IEEE. Loading the cite package will
@@ -393,12 +412,17 @@
   
 \begin{document}
 
+\input{titlePage}
+
 \onecolumn
 \tableofcontents
-\newpage 
-
+\listoffigures
+\listoftables
 \input{1_section1}
-\newpage
+\newpage 
+%
+%\input{1_section1}
+%\newpage
 
 \twocolumn   
 %
@@ -417,10 +441,10 @@
 %
 
 \author{Ting-yu~Yeh,
-        Christian Ayscue,
         Nicholas Fong,
-        and~Bing Tang% <-this % stops a space
-\thanks{T. Yeh, C. Ayscue, N. Fong, and B. Tang are with the Department
+		Christian Ayscue,
+        and~Bing Tang
+\thanks{T. Yeh, N. Fong, C. Ayscue, and B. Tang are with the Department
 of Computer Engineering, Santa Clara University, Santa Clara,
 CA, 95053 USA}% <-this % stops a space
 %\thanks{J. Doe and J. Doe are with Anonymous University.}% <-this % stops a space
@@ -482,7 +506,10 @@ CA, 95053 USA}% <-this % stops a space
 \begin{abstract}
 \addcontentsline{toc}{section}{Abstract}
 %\boldmath
-\blindtext[1]
+The abstract will be further refined after we have the prototype.
+A text mining approach can be used on the posts on stackoverflow.com to find popular topics that do not have a lot of support for a given time period. By comparing these findings to job postings at later dates, we find patterns that predict what the later job postings will be based on earlier Stack Overflow questions.
+
+
 \end{abstract}
 
 
@@ -504,26 +531,35 @@ CA, 95053 USA}% <-this % stops a space
 \input{3_Theoretical}
 \input{4_Hypothesis}
 \input{5_Methodology}
-\input{6_Implementation}
-\input{7_DataAnalysis}
-\input{8_Conclusions}
+%\input{6_Implementation}
+%\input{7_DataAnalysis}
+%\input{8_Conclusions}
 
 
 \begin{thebibliography}{1}
 
 
-\bibitem{ref}
-H.~Kopka and P.~W. Daly, \emph{A Guide to \LaTeX}, 3rd~ed.\hskip 1em plus
-  0.5em minus 0.4em\relax Harlow, England: Addison-Wesley, 1999.
 
+\bibitem{N1_Paper}
+Christoffer Rosen and Emad Shihab, \emph{What are mobile developers asking about? A large scale study using stack overflow}. \hskip 1em plus 0.5em minus 0.4em\relax Empirical Software Engineering, 2016
+
+\bibitem{N2_Paper}
+R.K. Ranjitha and Sanjay Singh, \emph{Is Stack Overflow Overflowing With Questions and Tags}. \hskip 1em plus 0.5em minus 0.4em\relax ACM Digital Library, 2015
+
+
+\bibitem{N3_Paper}
+Fabio Calefato, Filippo Lanubile, and Nicole Novielli, \emph{Moving to Stack Overflow: Best-Answer Prediction in Legacy Developer Forums}. \hskip 1em plus 0.5em minus 0.4em\relax ACM Digital Library, 2016
 
 \bibitem{T1_Paper}
-John Doe, \emph{Just Follow their format}, 3rd~ed.\hskip 1em plus
-  0.5em minus 0.4em\relax Santa Clara, CA: Princeton Review, 2017.
+Jordan Barber (2017, Nov. 6), \emph{Latent Dirichlet Allocation (LDA) with Python}. \hskip 1em plus 0.5em minus 0.4em\relax Retrived from \url{https://rstudio-pubs-static.s3.amazonaws.com/79360_850b2a69980c4488b1db95987a24867a.html}
+
+
 
 \end{thebibliography}
 
-\input{10_Appendices}
+
+%\input{10_Appendices}
+
 
 \end{document}
 
