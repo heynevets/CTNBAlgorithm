@@ -67,9 +67,13 @@ directory = './archive'
 if not os.path.exists(directory):
     os.makedirs(directory)
 for year in range(2008, 2017):
-    newDF = dfq[dfq['CreationDate'].str.contains(str(year))]
-    newDF.to_csv(directory + '/question' + str(year) + '.csv')
-    print(str(year) + ' Saved')
+    newDF = dfq[dfq['CreationDate'].str.contains(str(year))]    
+    filename = directory + '/question' + str(year).decode('utf-8') + '.csv'
+    newDF.to_csv(filename, header=True, index=False, encoding='utf-8')
+    print(str(year).encode('utf-8') + ' Saved')
+filename = directory + '/allData.csv'
+newDF.to_csv(filename, header=True, index=False, encoding='utf-8')
+
 
 # Use LDA on Topics
 # Documentation: http://scikit-learn.org/stable/modules/generated/sklearn.decomposition.LatentDirichletAllocation.html
