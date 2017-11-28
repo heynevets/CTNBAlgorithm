@@ -32,7 +32,7 @@ myDict['</p>'] = ''
 # tags = pd.read_csv('Tags.csv', encoding='latin-1')
 # print(tags)
 
-questions = pd.read_csv('parsedQuestions.csv', encoding='latin-1')
+questions = pd.read_csv('Questions.csv', encoding='latin-1')
 questions['Text'] = questions['Title'] + ' ' + questions['Body']
 dfq = pd.DataFrame(questions, columns = ['Text', 'Score', 'CreationDate', 'Id'])
 dfq['Text'].replace(myDict, regex = True, inplace = True)
@@ -41,8 +41,11 @@ dfq['Text'].replace(myDict, regex = True, inplace = True)
 # To-Do: Strip HTML Tags: https://stackoverflow.com/a/4869782/8839295      An alternative is to use the library BeautifulSoup (https://stackoverflow.com/a/12982689/8839295)
 
 # parse into dataframe with text and score(upvote?) only
-answers = pd.read_csv('parsedAnswers.csv', encoding='latin-1')
-answers['Body'].progress_apply(lambda x: [item for item in x if item not in stopWords])    #unsure if this version is faster than the above version for stripping out stopwords or not (https://stackoverflow.com/a/33246035/8839295)
+answers = pd.read_csv('Answers.csv', encoding='latin-1')
+
+# no need to parse the answer text. we never use it
+# answers['Body'].progress_apply(lambda x: [item for item in x if item not in stopWords])    #unsure if this version is faster than the above version for stripping out stopwords or not (https://stackoverflow.com/a/33246035/8839295) so so so slowwww
+
 dfa = pd.DataFrame(answers, columns = ['ParentId', 'Score'])
 
 #dfq['AScore']= map(lambda p, D: EOQ(D,p,ck,ch),df['p'], df['D']) 
