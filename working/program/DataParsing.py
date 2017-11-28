@@ -18,7 +18,7 @@ from gensim import corpora, models
 import re # for parsing html tags
 import os
 # initialize progress display
-tqdm_pandas(tqdm())
+tqdm.pandas(tqdm())
 
 
 # Building Dictionary
@@ -68,11 +68,14 @@ if not os.path.exists(directory):
     os.makedirs(directory)
 for year in range(2008, 2017):
     newDF = dfq[dfq['CreationDate'].str.contains(str(year))]    
-    filename = directory + '/question' + str(year).decode('utf-8') + '.csv'
-    newDF.to_csv(filename, header=True, index=False, encoding='utf-8')
-    print(str(year).encode('utf-8') + ' Saved')
+    # filename = directory + '/question' + str(year).decode('utf-8') + '.csv' # for python2.7    
+    # newDF.to_csv(filename, header=True, index=False, encoding='utf-8')
+    filename = directory + '/question' + str(year) + '.csv' 
+    newDF.to_csv(filename)
+    print(str(year) + ' Saved')
 filename = directory + '/allData.csv'
-newDF.to_csv(filename, header=True, index=False, encoding='utf-8')
+dfq.to_csv(filename)
+# dfq.to_csv(filename, header=True, index=False, encoding='utf-8')
 
 
 # Use LDA on Topics
