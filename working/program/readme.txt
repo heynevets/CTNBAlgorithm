@@ -18,10 +18,14 @@ This project requires around 6 GBs of free hardisk space to store the data
 2. execute command:
     pip install -r requirement.txt
 
-3. execute command:
-    a. Parse the data, this script will parse necessary data to the /archive folder year by year
-        python DataParsing.py
-    b. 
+3. execute command: 
+    python DataParsing.py
+    # This script will parse the necessary data to the /archive folder year by year
+
+4. execute command:
+    python B1_GenerateLDAModel.py
+    # This script will generate LDA model and store it in the /LDAModel folder
+    # The script will also generate year vs topic scoring matrix and documents count for each topic
 
 
 COEN\ 281\ Final\ Project.py
