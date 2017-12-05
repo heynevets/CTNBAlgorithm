@@ -15,6 +15,7 @@ import os
 import datetime
 import sys # for setting the recursion limit
 import numpy as np
+import re
 # sys.setrecursionlimit(2000)
 
 tokenizer = RegexpTokenizer(r'\w+')
