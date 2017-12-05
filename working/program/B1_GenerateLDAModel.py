@@ -62,8 +62,8 @@ dictionary = corpora.Dictionary(texts)
 corpus = [dictionary.doc2bow(text) for text in texts]
 
 # generate LDA model
-myNumTopic = 20
-myPass = 5
+myNumTopic = 20 # number of topics to generate
+myPass = 5 # number of passes
 import time
 start_time = time.time()
 
@@ -158,106 +158,3 @@ np.savetxt(str(myNumTopic) + "_" + str(myPass) + "_YrVsTpScore.csv", totalResult
 np.savetxt(str(myNumTopic) + "_" + str(myPass) + "_YrVsTpCount.csv", totalNumOfTopic, delimiter=",")
 
 
-################################################ Calculate Score ##########################################
-
-# ldamodel[corpus[0]] * dfallEntry.WScore[0]
-# ldamodel[corpus[0]][0]
-
-# dt = np.dtype('int,float')
-# array = np.array(a, dtype = dt)
-
-
-
-
-
-################################################ Calculate Score ##########################################
-
-
-
-#### Training More Models
-
-
-# # generate LDA model
-# myNumTopic = 100
-# myPass = 10
-# ldamodel = gensim.models.ldamodel.LdaModel(corpus, num_topics=myNumTopic, id2word = dictionary, passes=myPass)
-# directory = './LDAModel'
-# print('Outputing Model To...' + directory)
-# ldamodel.save(directory + "/ldamodel_Pass" + str(myPass) + "_numTopic" + str(myNumTopic))    
-
-# myNumTopic = 100
-# myPass = 5
-# ldamodel = gensim.models.ldamodel.LdaModel(corpus, num_topics=myNumTopic, id2word = dictionary, passes=myPass)
-# directory = './LDAModel'
-# print('Outputing Model To...' + directory)
-# ldamodel.save(directory + "/ldamodel_Pass" + str(myPass) + "_numTopic" + str(myNumTopic))    
-
-
-# myNumTopic = 20
-# myPass = 30
-# ldamodel = gensim.models.ldamodel.LdaModel(corpus, num_topics=myNumTopic, id2word = dictionary, passes=myPass)
-# directory = './LDAModel'
-# print('Outputing Model To...' + directory)
-# ldamodel.save(directory + "/ldamodel_Pass" + str(myPass) + "_numTopic" + str(myNumTopic))    
-
-
-# myNumTopic = 20
-# myPass = 20
-# ldamodel = gensim.models.ldamodel.LdaModel(corpus, num_topics=myNumTopic, id2word = dictionary, passes=myPass)
-# directory = './LDAModel'
-# print('Outputing Model To...' + directory)
-# ldamodel.save(directory + "/ldamodel_Pass" + str(myPass) + "_numTopic" + str(myNumTopic))    
-
-# myNumTopic = 50
-# myPass = 20
-# ldamodel = gensim.models.ldamodel.LdaModel(corpus, num_topics=myNumTopic, id2word = dictionary, passes=myPass)
-# directory = './LDAModel'
-# print('Outputing Model To...' + directory)
-# ldamodel.save(directory + "/ldamodel_Pass" + str(myPass) + "_numTopic" + str(myNumTopic))    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-##test
-# import gensim
-# ldamodel = gensim.models.ldamodel.LdaModel.load('./LDAModel_100Topics/ldamodel_Pass1_numTopic100')
-# ldamodel = gensim.models.ldamodel.LdaModel.load('./LDAModel/ldamodel_Pass1_numTopic50')
-# for i in range(0, 10):
-#     ldamodel.print_topic(i)
-
-
-
-
-
-# import gensim
-# a = gensim.models.ldamodel.LdaModel.load('./LDAModel/ldamodel_Pass2_numTopic100')
-# for i in range(0, 10):
-#     a.print_topic(i)
-
-
-# texts2 = []
-
-# raw = i.lower()
-# tokens = tokenizer.tokenize(raw)
-
-# # remove stop words from tokens
-# stopped_tokens = [i for i in tokens if not i in en_stop]
-
-# # stem tokens
-# stemmed_tokens = [p_stemmer.stem(i) for i in stopped_tokens]
-# texts2.append(stemmed_tokens)

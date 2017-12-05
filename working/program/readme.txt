@@ -26,7 +26,6 @@ This project requires around 6 GBs of free hardisk space to store the data
     python B1_GenerateLDAModel.py
     # This script will generate LDA model and store it in the /LDAModel folder
     # The script will also generate year vs topic scoring matrix and documents count for each topic
+    # Line 65 and 66 can be modified to change the number of topics and number of training passes, respectively
 
-
-COEN\ 281\ Final\ Project.py
 

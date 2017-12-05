@@ -5,7 +5,7 @@ import gensim
 import os
 import sys # for setting the recursion limit
 import numpy as np
-# load model
+
 # ldamodel = gensim.models.ldamodel.LdaModel.load('./LDAModel/ldamodel_Pass1_numTopic50')
 ldamodel = gensim.models.ldamodel.LdaModel.load('./LDAModel/ldamodel_Pass2_numTopic50')
 
@@ -30,6 +30,6 @@ for year in range(2008, 2017):
             weightedCount[j] += array['f1'][counter]
     totalResult = np.vstack((totalResult, weightedScore/weightedCount))
     totalNumOfTopic = np.vstack((totalNumOfTopic, weightedCount))
-    # totalResult.append(weightedScore/weightedCount)
+    
 np.savetxt("50_2_YrVsTpScore.csv", totalResult, delimiter=",")
 np.savetxt("50_2_YrVsTpCount.csv", totalNumOfTopic, delimiter=",")
