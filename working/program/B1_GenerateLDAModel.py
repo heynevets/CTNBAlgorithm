@@ -166,4 +166,14 @@ np.savetxt(directory + str(myNumTopic) + "_" + str(myPass) + "_YrVsTpScore.csv",
 np.savetxt(directory + str(myNumTopic) + "_" + str(myPass) + "_YrVsTpCount.csv", totalNumOfTopic, delimiter=",")
 
 
+################################################ Generate Keyword Report ##########################################
+
+text_file = open('./Results/topKeyWords.txt', 'w')
+
+for e in range(0, myNumTopic):
+    text_file.write("----------------------------------- Topic %d -----------------------------------\n" % e+1)
+    a = ldamodel.print_topic(e, topn=10)
+    matches = re.findall(r'\"(.+?)\"',a)
+    output = '\n'.join(matches)
+    text_file.write("%s\n\n\n" % output)
 
