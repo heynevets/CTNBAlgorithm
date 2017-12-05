@@ -62,8 +62,8 @@ dictionary = corpora.Dictionary(texts)
 corpus = [dictionary.doc2bow(text) for text in texts]
 
 # generate LDA model
-myNumTopic = 20 # number of topics to generate
-myPass = 5 # number of passes
+myNumTopic = 10 # number of topics to generate
+myPass = 30 # number of passes
 import time
 start_time = time.time()
 
@@ -125,7 +125,13 @@ for i in range(0, myNumTopic):
     myText.append(ldamodel.print_topic(i))
     print(str(i))
 
-thefile = open('LDATopicWords' + str(myNumTopic) + '_' + str(myPass) + '.txt', 'w')
+
+directory = './Results/'
+print('Outputing Scores To...' + directory)
+if not os.path.exists(directory):
+    os.makedirs(directory)    
+
+thefile = open(directory + 'LDATopicWords' + str(myNumTopic) + '_' + str(myPass) + '.txt', 'w')
 for item in myText:
   thefile.write("%s\n" % item)
 
@@ -154,7 +160,10 @@ for year in range(2008, 2017):
     totalResult = np.vstack((totalResult, weightedScore/weightedCount))
     totalNumOfTopic = np.vstack((totalNumOfTopic, weightedCount))
     # totalResult.append(weightedScore/weightedCount)
-np.savetxt(str(myNumTopic) + "_" + str(myPass) + "_YrVsTpScore.csv", totalResult, delimiter=",")
-np.savetxt(str(myNumTopic) + "_" + str(myPass) + "_YrVsTpCount.csv", totalNumOfTopic, delimiter=",")
+
+
+np.savetxt(directory + str(myNumTopic) + "_" + str(myPass) + "_YrVsTpScore.csv", totalResult, delimiter=",")
+np.savetxt(directory + str(myNumTopic) + "_" + str(myPass) + "_YrVsTpCount.csv", totalNumOfTopic, delimiter=",")
+
 
 
