@@ -34,3 +34,4 @@ This project requires around 6 GBs of free hardisk space to store the data
     LDATopicWords{Topic#}_{Pass#} # The most frequent keywords in each topic
     topKeyWords.txt # The most frequent keywords in each topic
 
+6. Run the matPlot.m in matlab to generate the pictures in pics for analysis
