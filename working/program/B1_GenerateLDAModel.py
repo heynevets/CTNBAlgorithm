@@ -15,6 +15,7 @@ import os
 import datetime
 import sys # for setting the recursion limit
 import numpy as np
+import re
 # sys.setrecursionlimit(2000)
 
 tokenizer = RegexpTokenizer(r'\w+')
@@ -171,7 +172,7 @@ np.savetxt(directory + str(myNumTopic) + "_" + str(myPass) + "_YrVsTpCount.csv",
 text_file = open('./Results/topKeyWords.txt', 'w')
 
 for e in range(0, myNumTopic):
-    text_file.write("----------------------------------- Topic %d -----------------------------------\n" % e+1)
+    text_file.write("----------------------------------- Topic %d -----------------------------------\n" % (e+1))
     a = ldamodel.print_topic(e, topn=10)
     matches = re.findall(r'\"(.+?)\"',a)
     output = '\n'.join(matches)
