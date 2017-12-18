@@ -1,5 +1,36 @@
 \section{Implementation}
 
 
-\subsection{code (refer programming requirements)}
 \subsection{design document and flowchart}
+
+The implementation follows a pipeline architecture shown in Figure \ref{fig:program_flowchart}. This makes sense for a task where a lot of data needs to be processed, because each step need to be run on the whole dataset before we can move on to the next step. All the steps to perform the analysis are defined as follows: 
+
+ \begin{enumerate}
+	\item Data Acquisition
+	\begin{enumerate}
+		\item Downloading data from kaggle
+		\item Load the data into memory with Pandas
+		\item Combine the subject and body of the questions
+	\end{enumerate}
+	\item Parsing and cleaning data	
+		\begin{enumerate}
+			\item Tokenize the Subject and questions into an array
+			\item Remove HTML Tags
+			\item Remove stop words - 500k words from online list (https://github.com/dwyl/english-words)
+			\item Stem the words - stemming makes some of the words too cryptic			
+		\end{enumerate}	
+	\item Fitting the LDA model
+		\begin{enumerate}
+			\item 20, 50, 100 topics
+			\item 1, 2, 3, passes
+		\end{enumerate}		
+	\item Computing scoring matrix	
+	\item Analyzing results
+
+
+\end{enumerate}
+
+
+
+
+

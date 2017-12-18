@@ -79,13 +79,22 @@
 \usepackage{mathpazo} % Palatino font
 
 
-
 \usepackage{blindtext}
 \usepackage{graphicx}
 
 % to patch the bibliography with section, so no page break
 \usepackage{etoolbox}
 \patchcmd{\thebibliography}{\chapter*}{\section*}{}{}
+
+\usepackage{multirow}% http://ctan.org/pkg/multirow
+\usepackage{hhline}% http://ctan.org/pkg/hhline
+\usepackage{tabularx,booktabs}
+\newcolumntype{C}{>{\centering\arraybackslash}X} % centered version of "X" type
+\setlength{\extrarowheight}{1pt}
+
+\usepackage{rotating}
+
+\usepackage{lipsum}
 
 % Some very useful LaTeX packages include:
 % (uncomment the ones you want to load)
@@ -506,8 +515,8 @@ CA, 95053 USA}% <-this % stops a space
 \begin{abstract}
 \addcontentsline{toc}{section}{Abstract}
 %\boldmath
-The abstract will be further refined after we have the prototype.
-A text mining approach can be used on the posts on stackoverflow.com to find popular topics that do not have a lot of support for a given time period. By comparing these findings to job postings at later dates, we find patterns that predict what the later job postings will be based on earlier Stack Overflow questions.
+
+A text mining approach can be used on the posts on stackoverflow.com to find popular topics that do not have a lot of support for a given time period. By comparing results from LDA models with different parameters, we found that older questions have more support as people have had more time to respond. The results from LDA, however, were unstable as we changed the number of topics due to the lack of training passes.
 
 
 \end{abstract}
@@ -531,9 +540,9 @@ A text mining approach can be used on the posts on stackoverflow.com to find pop
 \input{3_Theoretical}
 \input{4_Hypothesis}
 \input{5_Methodology}
-%\input{6_Implementation}
-%\input{7_DataAnalysis}
-%\input{8_Conclusions}
+\input{6_Implementation}
+\input{7_DataAnalysis}
+\input{8_Conclusions}
 
 
 \begin{thebibliography}{1}
@@ -558,8 +567,10 @@ Jordan Barber (2017, Nov. 6), \emph{Latent Dirichlet Allocation (LDA) with Pytho
 \end{thebibliography}
 
 
-%\input{10_Appendices}
-
+%\newpage 
+\onecolumn
+%
+\input{10_Appendices}
 
 \end{document}
 

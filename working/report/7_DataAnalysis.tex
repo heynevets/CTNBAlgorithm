@@ -1,10 +1,218 @@
 \section{Data Analysis and Discussion}
 
+\subsection{output generation}
+
+In order to finding the topics with least support, we need to calculate the support score for each topic, and for each year. To do so, first we will define the supportness score, and how we compute the score for each question; then we will sum the score of each questions which belong to a topic and year; then we compare the scores by topic, and by year.
+
+The score of supportness for each question is represented by a supporting level score, which is calculated by the equation below:
+
+\begin{gather*}
+Score = \frac{(V_{q} - V{a})}{N}\\
+\end{gather*}
+
+In which $Score$ is the support level score for each topic at each year
+\begin{gather*}
+V_{q} = Number_{questionsUpvotes} - Number_{questionDownvotes}\\
+V_{a} = Number_{answersUpvotes} - Number_{answersDownvotes} \\
+N = Number_{questions}\\
+\end{gather*}
+After we train the LDA model, we input a document to the trained model, the result is as in the following format:\\
+
+$LDAmodel (document 1) = \{p_{1}, p_{2}, p_{3}, p_{4}…..p_{k}\}$\\
+
+
+where $p_{k}$ means the percentage of that document being categorized into topic $k$. We then multiply the $(V_{q} - V_{a})$ by $p_{k}$ and add the $1\times k$ array to the row of year in which the document belongs to.
+
+In the end we will come up with a year versus topic matrix shown in Table \ref{table:tb1}.
+
+\begin{table} 
+	\centering
+	\caption{Scoring matrix for each topics in each year}		
+	\label{table:tb1}
+	
+	\begin{tabular}{ l l l l l }	
+		\\		\hline
+		Year & Topic 1 & Topic 2 & ... & Topic k\\ \hline  
+		2008 & $Score_{T_1in2008}$ & $Score_{T_2in2008}$ &&$Score_{T_kin2008}$ \\
+		2009 & $Score_{T_1in2009}$ & $Score_{T_2in2009}$ &&$Score_{T_kin2009}$ \\
+		... &...&...&...&...		\\
+		2016 & $Score_{T_1in2016}$ & $Score_{T_2in2016}$ &&$Score_{T_kin2016}$ \\
+	\end{tabular}
+\end{table}
+
+
+With the scoring matrix, we calibrate each row of entry by dividing the entry with the sum of the row. Lastly we sum column to get the support for the topic that the column represents.
+
+
+\subsection{output analysis}
+\subsubsection{Support score for topics for year 2008-2016}
+
+
+\begin{figure}
+	\center
+	\includegraphics[width=8cm]{100_1_Score.png}
+	\caption{General flowchart of the proposed algorithm}
+	\label{fig:waterfall}
+\end{figure}
+
+
+Figure \ref{fig:waterfall} showed how support level for each topic changes through the years. 
+
+The equation of supportness score indicates that the lower the score, the more support the topic has.
+
+From the diagram we found that the score for each topic is always negative, meaning that the $V_{a}$ is always larger than $V_{q}$. This indicates that for each year, the topics are always well supported in the community. Moreover, we found that the scores tends to be lower for previous years. This finding matches our intuition since the earlier the questions are posted, the more possible that the topic has been discussed.
+
+\subsubsection{Compare results of different passes of same number of topics}
+Further, we want to find the least score of the topics.
+
+We tried different topic numbers (K) and passes (P) and trained multiple LDA models.
+Figure \ref{fig:20_3} shows the score result for 20 topics and 3 passes. From the figure above we can see that topics 12 and 5 have the least support.
+
+
+\begin{figure}
+	\center
+	\includegraphics[width=8cm]{20_3FindNoSupportTopics.png}
+	\caption{Showing the score result for 20 topics and 3 passes. Topics 12 and 5 have the least support.}
+	\label{fig:20_3}
+\end{figure}
+
+\begin{figure}
+	\center
+	\includegraphics[width=8cm]{50_3FindNoSupportTopics.png}
+	\caption{Showing the score result for 50 topics and 3 passes. Topics 28 and 24 have the least support}
+	\label{fig:50_3}
+\end{figure}
+\begin{figure}
+	\center
+	\includegraphics[width=8cm]{100_1FindNoSupportTopics.png}
+	\caption{Showing the score result for 100 topics and 1 passes.Topics 14 and 33 have the least supported.}
+	\label{fig:100_1}
+\end{figure}
+
+If we compare different k value by examining the top 10 keywords for each topic, we can summarize the result in Table \ref{T:kw}.
 
 
 
-%\subsection{output generation}
-%\subsection{output analysis}
+
+
+As we can see, the keywords are very different and hard to understand. Additionally, there is almost no similarity between the 2 topics with the lowest score for K = 20, 50, and 100. However, we did see similarity with “buffer2” appearing in both K=20 and K=50. We believe this shows that LDA is working, but still far from convergence. 
+
+
+\subsubsection{Compare results of different passes of same number of topics}
+Further, we compare the results obtained from different number of passes (p) on the same topic numbers (k).
+
+For $k=20$, we generate the model on $p = 1$ and $p = 3$. The table \ref{T:kw2} shows the top keywords generated for each set. We can see that the keywords generated in 3 passes are generally more meaningful and more related to each other than the ones in just 1 pass. This proved that more passes in the LDA algorithm improve the cohesion of topics.
+
+
+\begin{table}[ph]
+	\center
+	\caption{Top keywords for topic 12 when K = 20 for each pass}		
+	%		\begin{tabularx}{c|c|c|c|c|c}
+	\begin{tabular}{c|c}
+		\hline
+		Pass 1 & Pass 3\\
+		\hline
+		\begin{tabular}{@{}c@{}}
+			jscrollpan\\
+			newwordlist\\
+			arg\\
+			ios7\\
+			scaley\\
+			getus\\
+			websecuritytest\\
+			dataservic\\
+			scalex\\
+			use\_separ\\
+		\end{tabular} &
+		\begin{tabular}{@{}c@{}}
+			uiview\\
+			handlemarkclean\\
+			nsjsonseri\\
+			nsexcept\\
+			dynload\\
+			buffer2\\
+			nilliteralconvert\\
+			groups\_taglin\\
+			282px\\
+			mygoal\\
+		\end{tabular}			
+		
+	\end{tabular}
+	
+	\label{T:kw2}
+
+\end{table}
+
+Similarly, we can evaluate topic 28 if k=50 as shown in Table \ref{T:kw3}
+
+
+\begin{table}[ph]
+	\center
+	\caption{Top keywords for topic 28 when K = 50 for each pass}		
+	%		\begin{tabularx}{c|c|c|c|c|c}
+	\begin{tabular}{c|c|c}
+		\hline
+		Pass 1 & Pass 2 & Pass 3\\
+		\hline
+		\begin{tabular}{@{}c@{}}
+			1020608401\\
+			progrmmat\\
+			385\\
+			gdriveact\\
+			properties\_home\_usage\_condit\\
+			output\_file\_nam\\
+			keep\_rat\\
+			init\_data\\
+			textfield\\
+			u05d5\\
+		\end{tabular} &
+		\begin{tabular}{@{}c@{}}
+			isexpand\\
+			startdat\\
+			setremembertoken\\
+			910\\
+			remindableinterfac\\
+			telicat1ev\\
+			pluss\\
+			getstudentid\\
+			nscalendar\\
+			lead\_x	\\
+		\end{tabular} &			
+		\begin{tabular}{@{}c@{}}				
+			cpe\\
+			element\_nod\\
+			buffer2\\
+			gettextcont\\
+			watchpoint\\
+			setremembertoken\\
+			begintransact\\
+			getsystemservic\\
+			90dp\\
+			yocto\\
+		\end{tabular}					
+	\end{tabular}
+	
+	\label{T:kw3}
+	
+\end{table}
+We can similarly see that topics are more coherent as the number of passes increases. Additionally, since a topic’s keywords change so much each pass, our model is far from converging. Thus, we can’t trust any of the results we have right now, since they are very likely to change significantly if we were to run one more iteration of LDA. 
+
+
+
+\subsection{compare output against hypothesis}
+We hypothesized that we can identify which topics have limited support on Stack Overflow based on our scoring metrics. Our graph of score vs. topic vs. year shows that our scoring metric works because older questions that have more time to receive answers have a better score (more negative score means more support). The topics identified as having the least support are not stable, and changed significantly between passes of LDA as well as when we changed K, the number of topics. Thus, our data does not support a solid conclusion in identifying which topics have the least support on Stack Overflow.
+
+\subsection{abnormal case explanation (the most important task)}
+There are a lot of abnormal cases involving the top words in each topic. One example from running LDA with 100 topics was “intoxicatedbia”, a word that shows up only once on Stack Overflow and hardly anywhere else in the whole internet. It is troubling that such a rare word would be characterized as one of the top words in a topic. We believe that this is likely due to the fact that we removed so many stop words as well as only running 1 pass (iteration) of the LDA algorithm, so this model was likely inaccurate.
+Another set of abnormal top “words” were just numbers. We found that numbers showed up quite often in the list of top words of a topic when we did a low number of passes. Those numbers were almost always meaningless, and ended up being noise that made the analysis of each topic more difficult. 
+Another abnormal case stemmed from our stemming function. We used a stemming function that truncated words down to their roots (e.g. talking, talker, and talkative were all truncated down to talk). While this can improve accuracy by linking similar words together, we noticed that our stemming function may have trimmed too much from the ends of some words. One common word that we found was “iphon”, which obviously related to iphones. However, the root word would be iphone, not iphon. Another example is “forl”, which we believe is the root of “for loop”. These are just representative examples of how our stemming function may have gone too far in truncating off the ends of words and eliminated whitespace between words. One consequence of this is that understanding what actual words are in each topic is quite difficult.
+
+\subsection{discussion}
+Our research and analysis has taught us many things. We learned the value of parsing data well, since a large portion of our work was dedicated to collecting, cleaning, and parsing the data into a format suitable for the LDA model to train on. We also ran into limitations regarding computing resources. We had a lot of text data to train our LDA model on, so it took many hours to train our model. We even ran into memory issues from not enough RAM on our computer to hold all of the data at once. This taught us some of the complexities of working with big data, since I/O delays from moving data between RAM and disk are far higher than CPU computing times. Due to our computing restraints, our LDA model was not as accurate as we had hoped it to be, and this limited our results to some degree.
+
+
+
+
 %\subsection{compare output against hypothesis}
 %\subsection{abnormal case explanation (the most important task)}
 %\subsection{statistic regression}

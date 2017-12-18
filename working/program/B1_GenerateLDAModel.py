@@ -1,8 +1,8 @@
 
-
-
-
-
+我选这段代码的原因是：
+1. 这是近期的作品
+2. 这和 Machine Learning 跟 Natural Language Processing 相关
+3. 这段代码的目的是对 StackOverflow 上的 QA 数据尽行内容分析
 
 import pandas as pd                         #version 0.21.0
 from tqdm import tqdm, tqdm_pandas

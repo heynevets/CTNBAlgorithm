@@ -1,1 +1,6 @@
 \contentsline {figure}{\numberline {1}{\ignorespaces General flowchart of the proposed algorithm}}{3}
+\contentsline {figure}{\numberline {2}{\ignorespaces General flowchart of the proposed algorithm}}{5}
+\contentsline {figure}{\numberline {3}{\ignorespaces Showing the score result for 20 topics and 3 passes. Topics 12 and 5 have the least support.}}{5}
+\contentsline {figure}{\numberline {4}{\ignorespaces Showing the score result for 50 topics and 3 passes. Topics 28 and 24 have the least support}}{5}
+\contentsline {figure}{\numberline {5}{\ignorespaces Showing the score result for 100 topics and 1 passes.Topics 14 and 33 have the least supported.}}{6}
+\contentsline {figure}{\numberline {6}{\ignorespaces Program flowchart}}{8}
